@@ -36,7 +36,14 @@ showList = () => {
     } else {
         list = JSON.parse(localStorage.getItem("list"));
     }
-    // console.log(list);
+
+    for (let i = 0; i < list.length; i++) {
+        list[i].add = 1;
+        list[i].edit = 0;
+    }
+
+    localStorage.setItem("list", JSON.stringify(list));
+    list = JSON.parse(localStorage.getItem("list"));
 
     let html = "";
     list.forEach(function (element, index) {
@@ -128,23 +135,20 @@ editId = (index) => {
 editList = (index) => {
     document.getElementById("addbtn").style.display = "none";
     document.getElementById("update").style.display = "block";
-    console.log("done");
     if (localStorage.getItem("list") == null) {
         list = [];
     } else {
         list = JSON.parse(localStorage.getItem("list"));
     }
-    
+
     document.getElementById("title").value = list[index].title;
     document.getElementById("description").value = list[index].description;
     document.getElementById("sdate").value = list[index].sdate;
     document.getElementById("edate").value = list[index].edate;
     document.getElementById("status").value = list[index].status;
-    
-    //window.location.assign("index.html");
+
     document.querySelector("#update").onclick = function () {
         if (validateForm() == true) {
-            // console.log("done")
             list[index].title = document.getElementById("title").value;
             list[index].description = document.getElementById("description").value;
             list[index].sdate = document.getElementById("sdate").value;
@@ -158,25 +162,17 @@ editList = (index) => {
         localStorage.setItem("list", JSON.stringify(list));
 
         showList();
-        // console.log("done")
         document.getElementById("title").value = " ";
         document.getElementById("description").value = " ";
         document.getElementById("sdate").value = " ";
         document.getElementById("edate").value = " ";
         document.getElementById("status").value = " ";
-        // window.location.assign("index.html");
-        // console.log("done")
     };
 };
 
 routePage = () => {
     window.location.assign("list.html");
 }
-
-// routeToMain = () => {
-//     window.location.assign("index.html");
-//     // index = 1;
-// }
 
 check = () => {
     list = JSON.parse(localStorage.getItem("list"));
@@ -186,10 +182,10 @@ check = () => {
     for (let i = 0; i < list.length; i++) {
         if (list[i].add == 0 && list[i].edit == 1) {
             indexNumber = i;
-            console.log(indexNumber);
+            //console.log(indexNumber);
             editList(indexNumber);
             break;
         }
-        
+
     }
 }
