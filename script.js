@@ -41,17 +41,18 @@ showList = () => {
     let html = "";
     list.forEach(function (element, index) {
         html += "<tr>";
+        html += "<td>" + (index + 1) + "</td>";
         html += "<td>" + element.title + "</td>";
         html += "<td>" + element.description + "</td>";
         html += "<td>" + element.sdate + "</td>";
         html += "<td>" + element.edate + "</td>";
         html += "<td>" + element.status + "</td>";
         html +=
-            '<td></button><button id="edit" onclick="editList(' +
+            '<td><button id="edit" onclick="editId(' +
             index +
             ')" class="btn btn-primary">Edit</button><button id="delate" onclick="delateList(' +
             index +
-            ')" type="button" class="btn-close" aria-label="Close"></td>';
+            ')" type="button" class="btn-close" aria-label="Close"></button></td>';
         html += "</tr>";
     });
     document.querySelector("#todotable tbody").innerHTML = html;
@@ -81,6 +82,8 @@ addData = () => {
             sdate: sdate,
             edate: edate,
             status: status,
+            add: 1,
+            edit: 0
         });
 
         localStorage.setItem("list", JSON.stringify(list));
@@ -111,23 +114,37 @@ delateList = (index) => {
     }
 };
 
+editId = (index) => {
+    console.log(index);
+    list = JSON.parse(localStorage.getItem("list"));
+
+    list[index].add = 0;
+    list[index].edit = 1;
+
+    localStorage.setItem("list", JSON.stringify(list));
+
+    window.location.assign("index.html");
+}
 editList = (index) => {
     document.getElementById("addbtn").style.display = "none";
     document.getElementById("update").style.display = "block";
+    console.log("done");
     if (localStorage.getItem("list") == null) {
         list = [];
     } else {
         list = JSON.parse(localStorage.getItem("list"));
     }
-
+    
     document.getElementById("title").value = list[index].title;
     document.getElementById("description").value = list[index].description;
     document.getElementById("sdate").value = list[index].sdate;
     document.getElementById("edate").value = list[index].edate;
     document.getElementById("status").value = list[index].status;
-
+    
+    //window.location.assign("index.html");
     document.querySelector("#update").onclick = function () {
         if (validateForm() == true) {
+            // console.log("done")
             list[index].title = document.getElementById("title").value;
             list[index].description = document.getElementById("description").value;
             list[index].sdate = document.getElementById("sdate").value;
@@ -135,19 +152,44 @@ editList = (index) => {
             list[index].status = document.getElementById("status").value;
         }
 
+        list[index].add = 1;
+        list[index].edit = 0;
+
         localStorage.setItem("list", JSON.stringify(list));
 
         showList();
-
+        // console.log("done")
         document.getElementById("title").value = " ";
         document.getElementById("description").value = " ";
         document.getElementById("sdate").value = " ";
         document.getElementById("edate").value = " ";
         document.getElementById("status").value = " ";
+        // window.location.assign("index.html");
+        // console.log("done")
     };
 };
 
 routePage = () => {
     window.location.assign("list.html");
-    // showList();
+}
+
+// routeToMain = () => {
+//     window.location.assign("index.html");
+//     // index = 1;
+// }
+
+check = () => {
+    list = JSON.parse(localStorage.getItem("list"));
+    //console.log(list);
+
+    let indexNumber = 0;
+    for (let i = 0; i < list.length; i++) {
+        if (list[i].add == 0 && list[i].edit == 1) {
+            indexNumber = i;
+            console.log(indexNumber);
+            editList(indexNumber);
+            break;
+        }
+        
+    }
 }
