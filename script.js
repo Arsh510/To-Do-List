@@ -1,32 +1,34 @@
 validateForm = () => {
     let title = document.getElementById("title");
-    let description = document.getElementById("description");
+    // let description = document.getElementById("description");
     let sdate = document.getElementById("sdate");
     let edate = document.getElementById("edate");
-    // let status = document.getElementById("status");
 
     let regEx = /^[a-zA-Z][a-zA-Z 0-9]*$/;
+    // if (title.value == "") {
+    //     document.getElementById('emptyName').style.display = "block";
+    //     return false;
+    // } else if (!regEx.test(title.value)) {
+    //     document.getElementById('invalidName').style.display = "block";
+    //     return false;
+    // } else if (sdate.value == "") {
+    //     document.getElementById('emptySdate').style.display = "block";
+    //     return false;
+    // } else if (edate.value == "") {
+    //     document.getElementById('emptyEdate').style.display = "block";
+    //     return false;
+    // } else if (edate.value < sdate.value) {
+    //     document.getElementById('invalidDate').style.display = "block";
+    //     return false;
+    // } else {
+    //     alert("Your task has been Added");
+    //     return true;
+    // }
     if (title.value == "") {
-        alert("*Name Must not be empty");
-        return false;
-    } else if (!regEx.test(title.value)) {
-        alert("*Invalid Name(Must start with alphabet)");
-        return false;
-    } else if (description.value == "") {
-        alert("*descriptionription must not be empty");
-        return false;
-    } else if (sdate.value == "") {
-        alert("*Start date must not be empty");
-        return false;
-    } else if (edate.value == "") {
-        alert("*End date must not be empty");
-        return false;
-    } else if (edate.value < sdate.value) {
-        alert("*End date cant be before Start date");
-        return false;
-    } else {
-        alert("Your task has been Added");
-        return true;
+        document.getElementById('emptyName').style.display = "block";
+    }
+    else {
+        document.getElementById('emptyName').style.display = "none";
     }
 };
 showList = () => {
@@ -65,8 +67,6 @@ showList = () => {
     document.querySelector("#todotable tbody").innerHTML = html;
 };
 
-// document.onload() = showList();
-
 addData = () => {
     if (validateForm() == true) {
         let title = document.getElementById("title").value;
@@ -74,7 +74,6 @@ addData = () => {
         let sdate = document.getElementById("sdate").value;
         let edate = document.getElementById("edate").value;
         let status = document.getElementById("status").value;
-        //window.location.href("list.html");
 
         let list;
         if (localStorage.getItem("list") == null) {
@@ -94,13 +93,14 @@ addData = () => {
         });
 
         localStorage.setItem("list", JSON.stringify(list));
-        showList();
 
         document.getElementById("title").value = "";
         document.getElementById("description").value = "";
         document.getElementById("sdate").value = "";
         document.getElementById("edate").value = "";
         document.getElementById("status").value = "";
+
+        showList();
     }
 };
 
@@ -135,6 +135,8 @@ editId = (index) => {
 editList = (index) => {
     document.getElementById("addbtn").style.display = "none";
     document.getElementById("update").style.display = "block";
+    document.getElementById("reset").style.display = "none";
+
     if (localStorage.getItem("list") == null) {
         list = [];
     } else {
@@ -161,12 +163,14 @@ editList = (index) => {
 
         localStorage.setItem("list", JSON.stringify(list));
 
-        showList();
+        // console.log("done")
         document.getElementById("title").value = " ";
         document.getElementById("description").value = " ";
         document.getElementById("sdate").value = " ";
         document.getElementById("edate").value = " ";
         document.getElementById("status").value = " ";
+        showList();
+        // console.log("done")
     };
 };
 
@@ -182,7 +186,7 @@ check = () => {
     for (let i = 0; i < list.length; i++) {
         if (list[i].add == 0 && list[i].edit == 1) {
             indexNumber = i;
-            //console.log(indexNumber);
+            console.log(indexNumber);
             editList(indexNumber);
             break;
         }
