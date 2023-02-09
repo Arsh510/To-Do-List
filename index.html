@@ -13,13 +13,19 @@
 
 <body onload="check()">
     <div class="container my-4">
+        <div id="addAlert" class="alert alert-success" role="alert" onfocus="clearVelidation()">
+            Your task has been Added !!!
+        </div>
+        <div id="updateAlert" class="alert alert-warning" role="alert">
+            Your Task has been Updated !!!
+        </div>
         <h1 class="app">To Do List</h1>
         <form>
             <div class="mb-3 form-group">
                 <label for="Title" class="form-label">Title : <span
                         style="color: red; font-size: 15px; font-weight: 100;">*</span></label>
                 <input type="test" class="form-control" id="title" placeholder="Enter title..."
-                    />
+                    onfocus="clearVelidation()" />
                 <p id="emptyName" style="color: red">*Name Must not be empty</p>
                 <p id="invalidName" style="color: red">*Invalid Name(Must start with alphabet)</p>
 
@@ -31,18 +37,19 @@
             <div class="dates">
                 <label for="status" class="form-label">Startdate : <span
                         style="color: red; font-size: 15px; font-weight: 100;">*</span></label>
-                <input type="date" id="sdate" />
+                <input type="date" id="sdate" onfocus="clearVelidation()" />
                 <p id="emptySdate" style="color: red">*Start date must not be empty</p><br /><br>
                 <label for="status" class="form-label">Enddate : <span
                         style="color: red; font-size: 15px; font-weight: 100;">*</span></label>
-                <input type="date" id="edate" />
+                <input type="date" id="edate" onfocus="clearVelidation()" />
                 <p id="emptyEdate" style="color: red">*End date must not be empty</p>
             </div>
             <p id="invalidDate" style="color: red">*end date cant be before start date</p><br>
             <div class="status form-group">
                 <label class="form-label">Seleact Status : <span
                         style="color: red; font-size: 15px; font-weight: 100;">*</span></label>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="status">
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="status"
+                    onfocus="clearVelidation()">
                     <option selected>Open this select menu</option>
                     <option value="Active">Active</option>
                     <option value="Complate">Complate</option>
