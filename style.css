@@ -2,12 +2,52 @@
     text-align: center;
 }
 
-#update{
+#update {
     display: none;
 }
 
-#delate{
-        margin-left: 20px;
-        padding-right: 10px;
-        padding-bottom: 13px;
+#delate {
+    margin-left: 20px;
+    padding-right: 10px;
+    padding-bottom: 13px;
+}
+
+.heading {
+    text-align: center;
+}
+
+#invalidName {
+    display: none;
+}
+
+#emptyName {
+    display: none;
+}
+
+#emptySdate {
+    display: none;
+}
+
+#emptyEdate {
+    display: none;
+}
+
+#invalidDate {
+    display: none;
+}
+
+#addAlert {
+    display: none;
+}
+
+#updateAlert{
+    display: none;
+}
+
+#delateAlert{
+    display: none;
+}
+
+#newBtn{
+    text-align: center;
 }
