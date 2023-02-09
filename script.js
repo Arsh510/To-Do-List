@@ -112,6 +112,7 @@ delateList = (index) => {
         localStorage.setItem("list", JSON.stringify(list));
         showList();
         document.getElementById("delateAlert").style.display = "block";
+        setTimeout(() => { document.getAnimations("delateAlert").style.display = "none"; }, 2000)
         return true;
     } else {
         return false;
