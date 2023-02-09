@@ -1,35 +1,30 @@
 validateForm = () => {
     let title = document.getElementById("title");
-    // let description = document.getElementById("description");
     let sdate = document.getElementById("sdate");
     let edate = document.getElementById("edate");
 
     let regEx = /^[a-zA-Z][a-zA-Z 0-9]*$/;
-    // if (title.value == "") {
-    //     document.getElementById('emptyName').style.display = "block";
-    //     return false;
-    // } else if (!regEx.test(title.value)) {
-    //     document.getElementById('invalidName').style.display = "block";
-    //     return false;
-    // } else if (sdate.value == "") {
-    //     document.getElementById('emptySdate').style.display = "block";
-    //     return false;
-    // } else if (edate.value == "") {
-    //     document.getElementById('emptyEdate').style.display = "block";
-    //     return false;
-    // } else if (edate.value < sdate.value) {
-    //     document.getElementById('invalidDate').style.display = "block";
-    //     return false;
-    // } else {
-    //     alert("Your task has been Added");
-    //     return true;
-    // }
     if (title.value == "") {
         document.getElementById('emptyName').style.display = "block";
+        return false;
+    } else if (!regEx.test(title.value)) {
+        document.getElementById('invalidName').style.display = "block";
+        return false;
+    } else if (sdate.value == "") {
+        document.getElementById('emptySdate').style.display = "block";
+        return false;
+    } else if (edate.value == "") {
+        document.getElementById('emptyEdate').style.display = "block";
+        return false;
+    } else if (edate.value < sdate.value) {
+        document.getElementById('invalidDate').style.display = "block";
+        return false;
+    } else {
+        // alert("Your task has been Added");
+        document.getElementById('addAlert').style.display = "block";
+        return true;
     }
-    else {
-        document.getElementById('emptyName').style.display = "none";
-    }
+
 };
 showList = () => {
     let list;
@@ -106,6 +101,7 @@ addData = () => {
 
 delateList = (index) => {
     let result = confirm("Are You sure to Delate this Item");
+    // console.log(result);
     if (result) {
         if (localStorage.getItem("list") == null) {
             list = [];
@@ -115,6 +111,7 @@ delateList = (index) => {
         list.splice(index, 1);
         localStorage.setItem("list", JSON.stringify(list));
         showList();
+        document.getElementById("delateAlert").style.display = "block";
         return true;
     } else {
         return false;
@@ -134,7 +131,7 @@ editId = (index) => {
 }
 editList = (index) => {
     document.getElementById("addbtn").style.display = "none";
-    document.getElementById("update").style.display = "block";
+    document.getElementById("update").style.display = "inline-block";
     document.getElementById("reset").style.display = "none";
 
     if (localStorage.getItem("list") == null) {
@@ -150,13 +147,13 @@ editList = (index) => {
     document.getElementById("status").value = list[index].status;
 
     document.querySelector("#update").onclick = function () {
-        if (validateForm() == true) {
-            list[index].title = document.getElementById("title").value;
-            list[index].description = document.getElementById("description").value;
-            list[index].sdate = document.getElementById("sdate").value;
-            list[index].edate = document.getElementById("edate").value;
-            list[index].status = document.getElementById("status").value;
-        }
+        // if (validateForm() == true) {
+        list[index].title = document.getElementById("title").value;
+        list[index].description = document.getElementById("description").value;
+        list[index].sdate = document.getElementById("sdate").value;
+        list[index].edate = document.getElementById("edate").value;
+        list[index].status = document.getElementById("status").value;
+        // }
 
         list[index].add = 1;
         list[index].edit = 0;
@@ -169,6 +166,8 @@ editList = (index) => {
         document.getElementById("sdate").value = " ";
         document.getElementById("edate").value = " ";
         document.getElementById("status").value = " ";
+        // alert("Task has been Updated");
+        document.getElementById("updateAlert").style.display = "block";
         showList();
         // console.log("done")
     };
@@ -180,7 +179,6 @@ routePage = () => {
 
 check = () => {
     list = JSON.parse(localStorage.getItem("list"));
-    //console.log(list);
 
     let indexNumber = 0;
     for (let i = 0; i < list.length; i++) {
@@ -192,4 +190,18 @@ check = () => {
         }
 
     }
+}
+
+clearVelidation = () => {
+    document.getElementById("emptyName").style.display = "none";
+    document.getElementById("invalidName").style.display = "none";
+    document.getElementById("emptySdate").style.display = "none";
+    document.getElementById("emptyEdate").style.display = "none";
+    document.getElementById("invalidDate").style.display = "none";
+    document.getElementById('addAlert').style.display = "none";
+    document.getElementById("updateAlert").style.display = "none";
+    document.getAnimations("delateAlert").style.display = "none";
+
+
+
 }
