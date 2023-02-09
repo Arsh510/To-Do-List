@@ -1,4 +1,4 @@
-.app{
+.app {
     text-align: center;
 }
 
@@ -40,14 +40,27 @@
     display: none;
 }
 
-#updateAlert{
+#updateAlert {
     display: none;
 }
 
-#delateAlert{
+#delateAlert {
     display: none;
 }
 
-#newBtn{
-    text-align: center;
+#newPagebtn {
+    /* text-align: center; */
+    float: right;
+    display: flex;
+    justify-content: space-between;
+}
+
+#showBtn {
+    float: right;
+}
+
+#container{
+    float: right;
+    display: flex;
+    justify-content: space-between;
 }
