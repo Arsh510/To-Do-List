@@ -13,6 +13,9 @@
 
 <body onload="showList()">
     <div id="container">
+        <div id="delateAlert" class="alert alert-danger" role="alert">
+            Your Task has been Delated !!!
+        </div>
         <h1 class="heading">Your To-Do List</h1>
         <table class="table" id="todotable">
             <thead>
@@ -30,8 +33,11 @@
 
             </tbody>
         </table>
-        <a href="index.html">
-            <button type="button" class="btn btn-info">Add Another Item</button></a>
+    </div>
+    <div id="newBtn">
+        <a href="index.html" onfocus="clearVelidation()">
+            <button type="button" class="btn btn-info">Add Another Item</button>
+        </a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
