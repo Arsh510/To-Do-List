@@ -19,7 +19,10 @@
         <div id="updateAlert" class="alert alert-warning" role="alert">
             Your Task has been Updated !!!
         </div>
-        <h1 class="app">To Do List</h1>
+        <div class="container my-4" id="container">
+            <h1 class="app">To Do List</h1>
+            <button type="button" class="btn btn-dark" id="showBtn" onclick="routePage()">Show All List</button>
+        </div>
         <form>
             <div class="mb-3 form-group">
                 <label for="Title" class="form-label">Title : <span
@@ -37,19 +40,19 @@
             <div class="dates">
                 <label for="status" class="form-label">Startdate : <span
                         style="color: red; font-size: 15px; font-weight: 100;">*</span></label>
-                <input type="date" id="sdate" onfocus="clearVelidation()" />
+                <input type="date" id="sdate" onfocus="clearVelidation()" class="form-control" style="width: 250px;" />
                 <p id="emptySdate" style="color: red">*Start date must not be empty</p><br /><br>
                 <label for="status" class="form-label">Enddate : <span
                         style="color: red; font-size: 15px; font-weight: 100;">*</span></label>
-                <input type="date" id="edate" onfocus="clearVelidation()" />
+                <input type="date" id="edate" onfocus="clearVelidation()" class="form-control" style="width: 250px;" />
                 <p id="emptyEdate" style="color: red">*End date must not be empty</p>
             </div>
             <p id="invalidDate" style="color: red">*end date cant be before start date</p><br>
             <div class="status form-group">
                 <label class="form-label">Seleact Status : <span
                         style="color: red; font-size: 15px; font-weight: 100;">*</span></label>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="status"
-                    onfocus="clearVelidation()">
+                <select class="form-select form-select-sm form-control" aria-label=".form-select-sm example" id="status"
+                    style="width: 250px;" onfocus="clearVelidation()">
                     <option selected>Open this select menu</option>
                     <option value="Active">Active</option>
                     <option value="Complate">Complate</option>
@@ -63,7 +66,6 @@
             <button type="button" class="btn btn-success" id="update">
                 Update
             </button>
-            <button type="button" class="btn btn-dark" onclick="routePage()">Show All List</button>
             <button type="submit" class="btn btn-success" id="reset">
                 Reset
             </button>
